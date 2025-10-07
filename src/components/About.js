@@ -93,7 +93,7 @@ const About = () => {
               <div className="education-content">
                 <h4>Bachelor of Electronics Engineering</h4>
                 <p>BEU-INHA DDP</p>
-                <span className="education-status">Currently a sophomore</span>
+                <span className="education-status">Currently a junior</span>
               </div>
             </div>
             <div className="education-item">

@@ -32,16 +32,30 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
+
+    try {
+      // Create mailto link with form data
+      const subject = encodeURIComponent(formData.subject || 'Portfolio Contact');
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      );
+      const mailtoLink = `mailto:maryamshakiliyeva@gmail.com?subject=${subject}&body=${body}`;
+
+      // Open email client
+      window.open(mailtoLink, '_self');
+
       setIsSubmitting(false);
       setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
-      
+
       // Reset status after 3 seconds
       setTimeout(() => setSubmitStatus(''), 3000);
-    }, 1000);
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setIsSubmitting(false);
+      setSubmitStatus('error');
+      setTimeout(() => setSubmitStatus(''), 3000);
+    }
   };
 
   const contactInfo = [
@@ -75,7 +89,7 @@ const Contact = () => {
     {
       icon: <FaLinkedin />,
       name: "LinkedIn",
-      url: "https://www.linkedin.com/in/maryam-shakiliyeva-53218229/",
+      url: "https://www.linkedin.com/in/maryam-shakiliyeva-5321822a9/",
       color: "#0077b5"
     }
   ];
@@ -215,7 +229,12 @@ const Contact = () => {
 
               {submitStatus === 'success' && (
                 <div className="submit-success">
-                  Message sent successfully! I'll get back to you soon.
+                  Email client opened! Please send the message from your email app.
+                </div>
+              )}
+              {submitStatus === 'error' && (
+                <div className="submit-error">
+                  Please make sure you have an email client installed, or copy the email address manually.
                 </div>
               )}
             </form>

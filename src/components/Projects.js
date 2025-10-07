@@ -10,12 +10,12 @@ const Projects = () => {
       id: 1,
       title: "Grumble - Complaint & Review Platform",
       description: "A full-stack web application designed for user authentication, complaint management, and review systems. Features secure login/signup, password recovery, and efficient frontend-backend communication.",
-      image: "/api/placeholder/400/250",
+      image: "/grumble_page.png",
       technologies: ["Node.js", "React", "MongoDB", "Express.js", "JWT", "Tailwind CSS"],
       category: "fullstack",
       github: "https://github.com/meryemshekiliyeva/grumble",
-      demo: "#",
-      status: "In Development",
+      demo: "https://grumble-platform.netlify.app",
+      status: "Completed",
       features: [
         "User authentication system",
         "Complaint categorization with React frontend",
@@ -26,53 +26,56 @@ const Projects = () => {
     },
     {
       id: 2,
-      title: "Electronics Circuit Simulator",
-      description: "An Arduino-based project combining hardware and software to simulate electronic circuits. Demonstrates practical application of electronics engineering principles.",
-      image: "/api/placeholder/400/250",
-      technologies: ["Arduino", "C++", "Circuit Design", "Sensors"],
+      title: "Measure Distance - Electronics Circuit Simulator",
+      description: "An Arduino-based project combining hardware and software to measure distance using ultrasonic sensors. Demonstrates practical application of electronics engineering principles with real-time data processing.",
+      image: "https://raw.githubusercontent.com/meryemshekiliyeva/Measure-Distance/main/1759779884848.jpg",
+      technologies: ["Arduino", "C++", "Circuit Design", "Ultrasonic Sensors", "Electronics"],
       category: "hardware",
-      github: "#",
-      demo: "#",
+      github: "https://github.com/meryemshekiliyeva/Measure-Distance",
+      demo: "https://github.com/meryemshekiliyeva/Measure-Distance",
       status: "Completed",
       features: [
-        "Real-time circuit simulation",
-        "Sensor integration",
+        "Real-time distance measurement",
+        "Ultrasonic sensor integration",
         "Hardware-software interface",
-        "Data visualization"
+        "Arduino programming",
+        "Circuit design and implementation"
       ]
     },
     {
       id: 3,
       title: "Portfolio Website",
-      description: "A modern, responsive portfolio website built with React. Features smooth animations, mobile-first design, and optimized performance.",
-      image: "/api/placeholder/400/250",
-      technologies: ["React", "CSS3", "JavaScript", "Responsive Design"],
+      description: "A modern, responsive portfolio website built with React. Features smooth animations, mobile-first design, and optimized performance with contact functionality and project showcase.",
+      image: "/portfolio-1000x500-1.jpg",
+      technologies: ["React", "CSS3", "JavaScript", "Responsive Design", "React Icons"],
       category: "frontend",
-      github: "#",
-      demo: "#",
+      github: "https://github.com/meryemshekiliyeva/Portfolio",
+      demo: "https://maryam-shakiliyeva-portfolio.netlify.app",
       status: "Completed",
       features: [
         "Responsive design",
         "Smooth animations",
         "Modern UI/UX",
+        "Contact form integration",
         "Performance optimized"
       ]
     },
     {
       id: 4,
-      title: "Data Structures & Algorithms",
-      description: "Implementation of various data structures and algorithms in C and Python. Part of computer science foundations coursework.",
-      image: "/api/placeholder/400/250",
-      technologies: ["C", "Python", "Algorithms", "Data Structures"],
+      title: "Binary Trees & Sorting Algorithms",
+      description: "Implementation of binary trees, sorting algorithms, and data structures in C. Comprehensive study of computer science fundamentals including tree traversal, search algorithms, and optimization techniques.",
+      image: "/cproglang.jpeg",
+      technologies: ["C", "Data Structures", "Algorithms", "Binary Trees", "Sorting"],
       category: "programming",
-      github: "#",
-      demo: "#",
-      status: "Ongoing",
+      github: "https://github.com/meryemshekiliyeva/holbertonschool-binary_trees",
+      demo: "https://github.com/meryemshekiliyeva/holbertonschool-sorting_algorithms",
+      status: "Completed",
       features: [
-        "Sorting algorithms",
-        "Tree structures",
-        "Graph algorithms",
-        "Memory optimization"
+        "Binary tree implementation and traversal",
+        "Sorting algorithms (Quick, Merge, Heap sort)",
+        "Tree search and insertion algorithms",
+        "Memory management and optimization",
+        "Algorithm complexity analysis"
       ]
     }
   ];

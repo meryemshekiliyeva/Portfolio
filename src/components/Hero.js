@@ -1,10 +1,17 @@
 import React from 'react';
-import { FaGithub, FaLinkedin, FaEnvelope, FaDownload } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaDownload, FaPhone } from 'react-icons/fa';
 import './Hero.css';
 
 const Hero = () => {
   const scrollToContact = () => {
     const element = document.getElementById('contact');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToNext = () => {
+    const element = document.getElementById('about');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
@@ -29,10 +36,10 @@ const Hero = () => {
               <button className="btn btn-primary" onClick={scrollToContact}>
                 Get In Touch
               </button>
-              <a 
-                href="/resume.pdf" 
+              <a
+                href="/Maryam Shakiliyeva.pdf"
                 className="btn btn-secondary"
-                download
+                download="Maryam Shakiliyeva.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -50,21 +57,28 @@ const Hero = () => {
               >
                 <FaGithub />
               </a>
-              <a 
-                href="https://www.linkedin.com/in/maryam-shakiliyeva-53218229/" 
-                target="_blank" 
+              <a
+                href="https://www.linkedin.com/in/maryam-shakiliyeva-5321822a9/"
+                target="_blank"
                 rel="noopener noreferrer"
                 className="social-link"
                 aria-label="LinkedIn"
               >
                 <FaLinkedin />
               </a>
-              <a 
+              <a
                 href="mailto:maryamshakiliyeva@gmail.com"
                 className="social-link"
                 aria-label="Email"
               >
                 <FaEnvelope />
+              </a>
+              <a
+                href="tel:+994556985310"
+                className="social-link"
+                aria-label="Phone"
+              >
+                <FaPhone />
               </a>
             </div>
           </div>
@@ -72,7 +86,7 @@ const Hero = () => {
           <div className="hero-image">
             <div className="profile-image-container">
               <img
-                src="/profile-photo.jpg"
+                src="/1002177837.jpg"
                 alt="Maryam Shakiliyeva"
                 className="profile-image"
                 onError={(e) => {
@@ -89,7 +103,7 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="hero-scroll">
+        <div className="hero-scroll" onClick={scrollToNext}>
           <div className="scroll-indicator">
             <span>Scroll Down</span>
             <div className="scroll-arrow"></div>
