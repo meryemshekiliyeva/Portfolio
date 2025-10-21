@@ -1,12 +1,13 @@
 import React from 'react';
-import { 
-  FaPython, 
-  FaReact, 
-  FaNodeJs, 
-  FaGitAlt, 
+import {
+  FaPython,
+  FaReact,
+  FaNodeJs,
+  FaGitAlt,
   FaLinux,
   FaFigma,
-  FaDatabase
+  FaDatabase,
+  FaHtml5
 } from 'react-icons/fa';
 import { 
   SiC, 
@@ -34,7 +35,7 @@ const Skills = () => {
       title: "Frontend Development",
       skills: [
         { name: "React", icon: <FaReact />, level: 75 },
-        { name: "HTML/CSS", icon: "🌐", level: 85 },
+        { name: "HTML/CSS", icon: <FaHtml5 />, level: 85 },
         { name: "UI/UX Design", icon: <FaFigma />, level: 70 }
       ]
     },

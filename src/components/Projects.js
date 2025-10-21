@@ -50,7 +50,7 @@ const Projects = () => {
       technologies: ["React", "CSS3", "JavaScript", "Responsive Design", "React Icons"],
       category: "frontend",
       github: "https://github.com/meryemshekiliyeva/Portfolio",
-      demo: "https://maryam-shakiliyeva-portfolio.netlify.app",
+      demo: "https://maryamshakiliyevaportfolio.netlify.app",
       status: "Completed",
       features: [
         "Responsive design",

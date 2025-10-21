@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import { 
-  FaEnvelope, 
-  FaPhone, 
-  FaMapMarkerAlt, 
-  FaGithub, 
+import {
+  FaEnvelope,
+  FaPhone,
+  FaMapMarkerAlt,
+  FaGithub,
   FaLinkedin,
   FaPaperPlane,
   FaUser,
-  FaComment
+  FaComment,
+  FaCopy
 } from 'react-icons/fa';
 import './Contact.css';
 
@@ -21,6 +22,7 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('');
+  const [copyStatus, setCopyStatus] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -34,28 +36,89 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Create mailto link with form data
-      const subject = encodeURIComponent(formData.subject || 'Portfolio Contact');
-      const body = encodeURIComponent(
-        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-      );
+      // Create a properly formatted email
+      const subject = encodeURIComponent(formData.subject || 'Portfolio Contact from ' + formData.name);
+      const emailBody = `Hello Maryam,
+
+I'm reaching out through your portfolio website.
+
+${formData.message}
+
+Best regards,
+${formData.name}
+${formData.email}`;
+
+      const body = encodeURIComponent(emailBody);
       const mailtoLink = `mailto:maryamshakiliyeva@gmail.com?subject=${subject}&body=${body}`;
 
-      // Open email client
-      window.open(mailtoLink, '_self');
+      // Try multiple methods to open email
+      try {
+        // Method 1: Direct window.location
+        window.location.href = mailtoLink;
+      } catch (e1) {
+        try {
+          // Method 2: Window.open
+          window.open(mailtoLink, '_self');
+        } catch (e2) {
+          // Method 3: Create link and click
+          const link = document.createElement('a');
+          link.href = mailtoLink;
+          link.target = '_blank';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        }
+      }
 
       setIsSubmitting(false);
       setSubmitStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
 
-      // Reset status after 3 seconds
-      setTimeout(() => setSubmitStatus(''), 3000);
+      // Reset status after 5 seconds
+      setTimeout(() => setSubmitStatus(''), 5000);
     } catch (error) {
-      console.error('Error sending email:', error);
+      console.error('Error opening email client:', error);
       setIsSubmitting(false);
       setSubmitStatus('error');
-      setTimeout(() => setSubmitStatus(''), 3000);
+      setTimeout(() => setSubmitStatus(''), 5000);
     }
+  };
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText('maryamshakiliyeva@gmail.com').then(() => {
+      setCopyStatus('copied');
+      setTimeout(() => setCopyStatus(''), 2000);
+    }).catch(() => {
+      setCopyStatus('error');
+      setTimeout(() => setCopyStatus(''), 2000);
+    });
+  };
+
+  const sendViaGmail = () => {
+    setIsSubmitting(true);
+
+    const subject = encodeURIComponent(formData.subject || 'Portfolio Contact from ' + formData.name);
+    const emailBody = `Hello Maryam,
+
+I'm reaching out through your portfolio website.
+
+${formData.message}
+
+Best regards,
+${formData.name}
+${formData.email}`;
+
+    const body = encodeURIComponent(emailBody);
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=maryamshakiliyeva@gmail.com&su=${subject}&body=${body}`;
+
+    window.open(gmailUrl, '_blank');
+
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setSubmitStatus('gmail');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setTimeout(() => setSubmitStatus(''), 5000);
+    }, 1000);
   };
 
   const contactInfo = [
@@ -125,6 +188,16 @@ const Contact = () => {
                     <a href={info.link} className="contact-link">
                       {info.value}
                     </a>
+                    {info.title === 'Email' && (
+                      <button
+                        onClick={copyEmail}
+                        className="copy-email-btn"
+                        title="Copy email address"
+                      >
+                        <FaCopy />
+                        {copyStatus === 'copied' ? 'Copied!' : copyStatus === 'error' ? 'Error' : 'Copy'}
+                      </button>
+                    )}
                   </div>
                 </div>
               ))}
@@ -209,10 +282,11 @@ const Contact = () => {
                 </div>
               </div>
 
-              <button 
-                type="submit" 
+              <button
+                type="button"
+                onClick={sendViaGmail}
                 className={`submit-btn ${isSubmitting ? 'submitting' : ''}`}
-                disabled={isSubmitting}
+                disabled={isSubmitting || !formData.name || !formData.email || !formData.message}
               >
                 {isSubmitting ? (
                   <>
@@ -222,19 +296,19 @@ const Contact = () => {
                 ) : (
                   <>
                     <FaPaperPlane />
-                    Send Message
+                    SEND MESSAGE
                   </>
                 )}
               </button>
 
-              {submitStatus === 'success' && (
+              {submitStatus === 'gmail' && (
                 <div className="submit-success">
-                  Email client opened! Please send the message from your email app.
+                  ✅ Gmail opened in new tab! Your message is pre-filled and ready to send.
                 </div>
               )}
               {submitStatus === 'error' && (
                 <div className="submit-error">
-                  Please make sure you have an email client installed, or copy the email address manually.
+                  ❌ Couldn't open Gmail. Please email me directly at: maryamshakiliyeva@gmail.com
                 </div>
               )}
             </form>
