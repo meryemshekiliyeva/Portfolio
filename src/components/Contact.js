@@ -36,7 +36,7 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Create a properly formatted email for Gmail
+      // Create a properly formatted email
       const subject = encodeURIComponent(formData.subject || 'Portfolio Contact from ' + formData.name);
       const emailBody = `Hello Maryam,
 
@@ -50,11 +50,27 @@ ${formData.email}`;
 
       const body = encodeURIComponent(emailBody);
 
-      // Gmail web interface URL
-      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=maryamshakiliyeva@gmail.com&su=${subject}&body=${body}`;
+      // Use mailto: which works on both desktop and mobile
+      // On mobile: opens user's email app with FROM their email
+      // On desktop: opens Gmail web interface
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-      // Open Gmail in new tab
-      window.open(gmailUrl, '_blank');
+      let emailLink;
+      if (isMobile) {
+        // On mobile, use mailto: so email comes FROM user's email
+        emailLink = `mailto:maryamshakiliyeva@gmail.com?subject=${subject}&body=${body}`;
+      } else {
+        // On desktop, use Gmail web interface
+        emailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=maryamshakiliyeva@gmail.com&su=${subject}&body=${body}`;
+      }
+
+      if (isMobile) {
+        // For mobile, use window.location.href for mailto:
+        window.location.href = emailLink;
+      } else {
+        // For desktop, open in new tab
+        window.open(emailLink, '_blank');
+      }
 
       setIsSubmitting(false);
       setSubmitStatus('success');
@@ -63,7 +79,7 @@ ${formData.email}`;
       // Reset status after 5 seconds
       setTimeout(() => setSubmitStatus(''), 5000);
     } catch (error) {
-      console.error('Error opening Gmail:', error);
+      console.error('Error opening email:', error);
       setIsSubmitting(false);
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus(''), 5000);
@@ -263,7 +279,7 @@ ${formData.email}`;
 
               {submitStatus === 'success' && (
                 <div className="submit-success">
-                  ✅ Gmail opened in new tab! Your message is pre-filled and ready to send.
+                  ✅ Email app opened! Your message is pre-filled and ready to send from your email.
                 </div>
               )}
               {submitStatus === 'error' && (
