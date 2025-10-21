@@ -36,7 +36,7 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
-      // Create a properly formatted email
+      // Create a properly formatted email for Gmail
       const subject = encodeURIComponent(formData.subject || 'Portfolio Contact from ' + formData.name);
       const emailBody = `Hello Maryam,
 
@@ -49,10 +49,12 @@ ${formData.name}
 ${formData.email}`;
 
       const body = encodeURIComponent(emailBody);
-      const mailtoLink = `mailto:maryamshakiliyeva@gmail.com?subject=${subject}&body=${body}`;
 
-      // Open email client
-      window.location.href = mailtoLink;
+      // Gmail web interface URL
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=maryamshakiliyeva@gmail.com&su=${subject}&body=${body}`;
+
+      // Open Gmail in new tab
+      window.open(gmailUrl, '_blank');
 
       setIsSubmitting(false);
       setSubmitStatus('success');
@@ -61,7 +63,7 @@ ${formData.email}`;
       // Reset status after 5 seconds
       setTimeout(() => setSubmitStatus(''), 5000);
     } catch (error) {
-      console.error('Error opening email client:', error);
+      console.error('Error opening Gmail:', error);
       setIsSubmitting(false);
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus(''), 5000);
@@ -261,7 +263,7 @@ ${formData.email}`;
 
               {submitStatus === 'success' && (
                 <div className="submit-success">
-                  ✅ Email client opened! Please send the message from your email app.
+                  ✅ Gmail opened in new tab! Your message is pre-filled and ready to send.
                 </div>
               )}
               {submitStatus === 'error' && (
