@@ -14,7 +14,7 @@ const Projects = () => {
       technologies: ["Node.js", "React", "MongoDB", "Express.js", "JWT", "Tailwind CSS"],
       category: "fullstack",
       github: "https://github.com/meryemshekiliyeva/grumble",
-      demo: "https://grumble-platform.netlify.app",
+      demo: "https://grumble-five.vercel.app/",
       status: "Completed",
       features: [
         "User authentication system",

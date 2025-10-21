@@ -438,3 +438,127 @@
     font-size: 0.9rem;
   }
 }
+
+/* Small Phone Styles */
+@media (max-width: 480px) {
+  .contact {
+    padding: 2rem 0;
+  }
+
+  .contact-container {
+    padding: 0 0.75rem;
+  }
+
+  .section-header {
+    margin-bottom: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title::after {
+    width: 60px;
+    bottom: -8px;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .contact-intro h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .contact-intro p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .contact-item {
+    padding: 0.7rem;
+    margin-bottom: 1rem;
+    gap: 0.8rem;
+  }
+
+  .contact-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+  }
+
+  .contact-text h4 {
+    font-size: 0.9rem;
+  }
+
+  .contact-link {
+    font-size: 0.85rem;
+  }
+
+  .copy-email-btn {
+    margin-left: 0.3rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.7rem;
+    gap: 0.2rem;
+  }
+
+  .social-section h4 {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .social-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .social-link {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+    min-width: auto;
+    flex: 1;
+    min-width: 100px;
+  }
+
+  .contact-form {
+    padding: 1.2rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    padding: 0.7rem 0.7rem 0.7rem 2.2rem;
+    font-size: 0.85rem;
+  }
+
+  .input-icon {
+    left: 0.7rem;
+    font-size: 0.8rem;
+  }
+
+  .contact-form textarea {
+    min-height: 100px;
+    rows: 4;
+  }
+
+  .submit-btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+  }
+
+  .submit-success,
+  .submit-error {
+    font-size: 0.8rem;
+    padding: 0.8rem;
+    margin-top: 0.8rem;
+  }
+}

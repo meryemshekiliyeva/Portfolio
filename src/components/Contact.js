@@ -51,24 +51,8 @@ ${formData.email}`;
       const body = encodeURIComponent(emailBody);
       const mailtoLink = `mailto:maryamshakiliyeva@gmail.com?subject=${subject}&body=${body}`;
 
-      // Try multiple methods to open email
-      try {
-        // Method 1: Direct window.location
-        window.location.href = mailtoLink;
-      } catch (e1) {
-        try {
-          // Method 2: Window.open
-          window.open(mailtoLink, '_self');
-        } catch (e2) {
-          // Method 3: Create link and click
-          const link = document.createElement('a');
-          link.href = mailtoLink;
-          link.target = '_blank';
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        }
-      }
+      // Open email client
+      window.location.href = mailtoLink;
 
       setIsSubmitting(false);
       setSubmitStatus('success');
@@ -94,32 +78,7 @@ ${formData.email}`;
     });
   };
 
-  const sendViaGmail = () => {
-    setIsSubmitting(true);
 
-    const subject = encodeURIComponent(formData.subject || 'Portfolio Contact from ' + formData.name);
-    const emailBody = `Hello Maryam,
-
-I'm reaching out through your portfolio website.
-
-${formData.message}
-
-Best regards,
-${formData.name}
-${formData.email}`;
-
-    const body = encodeURIComponent(emailBody);
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=maryamshakiliyeva@gmail.com&su=${subject}&body=${body}`;
-
-    window.open(gmailUrl, '_blank');
-
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitStatus('gmail');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setSubmitStatus(''), 5000);
-    }, 1000);
-  };
 
   const contactInfo = [
     {
@@ -283,8 +242,7 @@ ${formData.email}`;
               </div>
 
               <button
-                type="button"
-                onClick={sendViaGmail}
+                type="submit"
                 className={`submit-btn ${isSubmitting ? 'submitting' : ''}`}
                 disabled={isSubmitting || !formData.name || !formData.email || !formData.message}
               >
@@ -301,9 +259,9 @@ ${formData.email}`;
                 )}
               </button>
 
-              {submitStatus === 'gmail' && (
+              {submitStatus === 'success' && (
                 <div className="submit-success">
-                  ✅ Gmail opened in new tab! Your message is pre-filled and ready to send.
+                  ✅ Email client opened! Please send the message from your email app.
                 </div>
               )}
               {submitStatus === 'error' && (
