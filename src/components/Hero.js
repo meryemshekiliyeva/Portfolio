@@ -37,9 +37,9 @@ const Hero = () => {
                 Get In Touch
               </button>
               <a
-                href="/Maryam Shakiliyeva.pdf"
+                href="/Maryam Shakiliyeva CV (4).pdf"
                 className="btn btn-secondary"
-                download="Maryam Shakiliyeva.pdf"
+                download="Maryam Shakiliyeva CV (4).pdf"
                 target="_blank"
                 rel="noopener noreferrer"
               >
